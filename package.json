@@ -1,0 +1,24 @@
+{
+  "name": "typedcript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kazuki827/typedcript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kazuki827/typedcript/issues"
+  },
+  "homepage": "https://github.com/kazuki827/typedcript#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}

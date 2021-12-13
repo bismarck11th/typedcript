@@ -1,23 +1,14 @@
-function add(n1: number, n2: number) {
-  return n1 + n2;
+let userInput: unknown;
+let username: string;
+
+// anyと違い型チェックの必要あり
+if (typeof userInput === 'string') {
+  username = userInput;
 }
 
-function printResult(num: number): void {
-  console.log('Result: ' + num);
+// never : 値を返すことが絶対にない
+function generateError(message: string, code: number): never {
+  throw { message: message, errorCode: code };
 }
 
-function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
-  const result = n1 + n2;
-  cb(result);
-}
-
-addAndHandle(10, 20, (result) => {
-  console.log(result);
-  return result;  // No error
-});
-
-let combineValues: (a: number, b: number) => number;
-
-combineValues = add;
-// combineValues = printResult; error
-console.log(combineValues(10, 5));
+generateError('エラーが発生しました', 500);

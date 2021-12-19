@@ -6,6 +6,9 @@ class Department {
         // privateだとDepartment class以外からアクセス不可(継承クラスも同等)
         this.employees = [];
     }
+    static createEmployee(name) {
+        return { name: name };
+    }
     describe() {
         console.log(`Department (${this.id}): ${this.name}`);
     }
@@ -17,6 +20,8 @@ class Department {
         console.log(`Employee List : ${this.employees}`);
     }
 }
+// インスタンスからはアクセス不可
+Department.fiscalYear = 2021;
 class ITDepartment extends Department {
     constructor(id, admins) {
         super(id, 'IT');
@@ -58,6 +63,9 @@ class AccountingDepartment extends Department {
         this.employees.push(name);
     }
 }
+const employee1 = Department.createEmployee('Max');
+Department.fiscalYear = 2022;
+console.log(employee1, Department.fiscalYear);
 const it = new ITDepartment('D1', ['Max']);
 it.describe();
 it.addEmployee('Max');

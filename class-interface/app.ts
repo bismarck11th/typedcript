@@ -1,6 +1,12 @@
 class Department {
+  // インスタンスからはアクセス不可
+  static fiscalYear = 2021;
   // privateだとDepartment class以外からアクセス不可(継承クラスも同等)
   protected employees: string[] = [];
+
+  static createEmployee(name: string) {
+    return { name: name };
+  }
 
   constructor(readonly id: string, public name: string) {}
 
@@ -64,6 +70,10 @@ class AccountingDepartment extends Department {
     this.employees.push(name);
   }
 }
+
+const employee1 = Department.createEmployee('Max');
+Department.fiscalYear = 2022;
+console.log(employee1, Department.fiscalYear);
 
 const it = new ITDepartment('D1', ['Max']);
 it.describe();

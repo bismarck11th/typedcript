@@ -1,4 +1,5 @@
-class Department {
+// abstract classはインスタンスを作成不可
+abstract class Department {
   // インスタンスからはアクセス不可
   static fiscalYear = 2021;
   // privateだとDepartment class以外からアクセス不可(継承クラスも同等)
@@ -8,11 +9,10 @@ class Department {
     return { name: name };
   }
 
-  constructor(readonly id: string, public name: string) {}
+  constructor(protected readonly id: string, public name: string) {}
 
-  describe(this: Department) {
-    console.log(`Department (${this.id}): ${this.name}`);
-  }
+  // abstract - classにもabstractをつける必要あり.
+  abstract describe(this: Department): void;
 
   addEmployee(employee: string) {
     this.employees.push(employee);
@@ -28,6 +28,10 @@ class ITDepartment extends Department {
   constructor(id: string, private admins: string[]) {
     super(id, 'IT');
     this.admins = admins;
+  }
+
+  describe() {
+    console.log(`IT部門 - ID : ${this.id}`);
   }
 }
 
@@ -52,6 +56,10 @@ class AccountingDepartment extends Department {
   constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
     this.lastReport = reports[0];
+  }
+
+  describe() {
+    console.log(`会計部門 - ID : ${this.id}`);
   }
 
   addReport(text: string) {
@@ -89,3 +97,4 @@ accounting.printReports();
 accounting.addEmployee('Max');
 accounting.addEmployee('John');
 accounting.printEmployeeInformation();
+accounting.describe();

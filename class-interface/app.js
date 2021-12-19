@@ -1,4 +1,5 @@
 "use strict";
+// abstract classはインスタンスを作成不可
 class Department {
     constructor(id, name) {
         this.id = id;
@@ -8,9 +9,6 @@ class Department {
     }
     static createEmployee(name) {
         return { name: name };
-    }
-    describe() {
-        console.log(`Department (${this.id}): ${this.name}`);
     }
     addEmployee(employee) {
         this.employees.push(employee);
@@ -27,6 +25,9 @@ class ITDepartment extends Department {
         super(id, 'IT');
         this.admins = admins;
         this.admins = admins;
+    }
+    describe() {
+        console.log(`IT部門 - ID : ${this.id}`);
     }
 }
 class AccountingDepartment extends Department {
@@ -48,6 +49,9 @@ class AccountingDepartment extends Department {
             throw new Error('正しい値を設定してください。');
         }
         this.addReport(text);
+    }
+    describe() {
+        console.log(`会計部門 - ID : ${this.id}`);
     }
     addReport(text) {
         this.reports.push(text);
@@ -79,3 +83,4 @@ accounting.printReports();
 accounting.addEmployee('Max');
 accounting.addEmployee('John');
 accounting.printEmployeeInformation();
+accounting.describe();

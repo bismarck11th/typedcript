@@ -3,6 +3,7 @@ class Department {
     constructor(id, name) {
         this.id = id;
         this.name = name;
+        // privateだとDepartment class以外からアクセス不可(継承クラスも同等)
         this.employees = [];
     }
     describe() {
@@ -34,6 +35,12 @@ class AccountingDepartment extends Department {
     printReports() {
         console.log(this.reports);
     }
+    addEmployee(name) {
+        if (name === 'Max') {
+            return;
+        }
+        this.employees.push(name);
+    }
 }
 const it = new ITDepartment('D1', ['Max']);
 it.describe();
@@ -43,3 +50,6 @@ it.printEmployeeInformation();
 const accounting = new AccountingDepartment('D2', []);
 accounting.addReport('Something');
 accounting.printReports();
+accounting.addEmployee('Max');
+accounting.addEmployee('John');
+accounting.printEmployeeInformation();

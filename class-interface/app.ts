@@ -13,8 +13,8 @@ class Department {
   }
 
   printEmployeeInformation() {
-    console.log(this.employees.length);
-    console.log(this.employees);
+    console.log(`Number of employees : ${this.employees.length}`);
+    console.log(`Employee List : ${this.employees}`);
   }
 }
 
@@ -26,12 +26,31 @@ class ITDepartment extends Department {
 }
 
 class AccountingDepartment extends Department {
+  private lastReport: string;
+
+  public get mostRecentReport() {
+    if (this.lastReport) {
+      return this.lastReport;
+    } else {
+      throw new Error('レポートが見つかりません。');
+    }
+  }
+
+  public set mostRecentReport(text: string) {
+    if (!text) {
+      throw new Error('正しい値を設定してください。');
+    }
+    this.addReport(text);
+  }
+
   constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
+    this.lastReport = reports[0];
   }
 
   addReport(text: string) {
     this.reports.push(text);
+    this.lastReport = text;
   }
 
   printReports() {
@@ -53,7 +72,9 @@ it.addEmployee('John');
 it.printEmployeeInformation();
 
 const accounting = new AccountingDepartment('D2', []);
+accounting.mostRecentReport = '通期会計レポート';
 accounting.addReport('Something');
+console.log(accounting.mostRecentReport);
 accounting.printReports();
 accounting.addEmployee('Max');
 accounting.addEmployee('John');

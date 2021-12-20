@@ -1,86 +1,31 @@
 "use strict";
-// abstract classはインスタンスを作成不可
-class Department {
-    constructor(id, name) {
-        this.id = id;
-        this.name = name;
-        // privateだとDepartment class以外からアクセス不可(継承クラスも同等)
-        this.employees = [];
+// abstract class と interface の違いは, 実装を持つかどうか.
+// interfaceは実装を持たない
+{
+    let add;
+    add = (n1, n2) => {
+        return n1 + n2;
+    };
+    // interface Greetable extends Named {
+    //   greet(phrase: string): void;
+    // }
+    class Person {
+        constructor(n) {
+            this.age = 30;
+            if (n) {
+                this.name = n;
+            }
+        }
+        greet(phrase) {
+            if (this.name) {
+                console.log(phrase + ' ' + this.name);
+            }
+            else {
+                console.log('Hi!');
+            }
+        }
     }
-    static createEmployee(name) {
-        return { name: name };
-    }
-    addEmployee(employee) {
-        this.employees.push(employee);
-    }
-    printEmployeeInformation() {
-        console.log(`Number of employees : ${this.employees.length}`);
-        console.log(`Employee List : ${this.employees}`);
-    }
+    let user1;
+    user1 = new Person();
+    user1.greet('Hello');
 }
-// インスタンスからはアクセス不可
-Department.fiscalYear = 2021;
-class ITDepartment extends Department {
-    constructor(id, admins) {
-        super(id, 'IT');
-        this.admins = admins;
-        this.admins = admins;
-    }
-    describe() {
-        console.log(`IT部門 - ID : ${this.id}`);
-    }
-}
-class AccountingDepartment extends Department {
-    constructor(id, reports) {
-        super(id, 'Accounting');
-        this.reports = reports;
-        this.lastReport = reports[0];
-    }
-    get mostRecentReport() {
-        if (this.lastReport) {
-            return this.lastReport;
-        }
-        else {
-            throw new Error('レポートが見つかりません。');
-        }
-    }
-    set mostRecentReport(text) {
-        if (!text) {
-            throw new Error('正しい値を設定してください。');
-        }
-        this.addReport(text);
-    }
-    describe() {
-        console.log(`会計部門 - ID : ${this.id}`);
-    }
-    addReport(text) {
-        this.reports.push(text);
-        this.lastReport = text;
-    }
-    printReports() {
-        console.log(this.reports);
-    }
-    addEmployee(name) {
-        if (name === 'Max') {
-            return;
-        }
-        this.employees.push(name);
-    }
-}
-const employee1 = Department.createEmployee('Max');
-Department.fiscalYear = 2022;
-console.log(employee1, Department.fiscalYear);
-const it = new ITDepartment('D1', ['Max']);
-it.describe();
-it.addEmployee('Max');
-it.addEmployee('John');
-it.printEmployeeInformation();
-const accounting = new AccountingDepartment('D2', []);
-accounting.mostRecentReport = '通期会計レポート';
-accounting.addReport('Something');
-console.log(accounting.mostRecentReport);
-accounting.printReports();
-accounting.addEmployee('Max');
-accounting.addEmployee('John');
-accounting.printEmployeeInformation();
-accounting.describe();

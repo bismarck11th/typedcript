@@ -10,7 +10,7 @@
         privileges: ['create-server'],
         startDate: new Date()
     };
-    function add(a, b) {
+    function add1(a, b) {
         // プリミティブ型の型ガード
         if (typeof a === 'string' || typeof b === 'string') {
             return a.toString() + b.toString();
@@ -80,4 +80,13 @@
         email: '正しいメールアドレスではありません',
         username: 'ユーザー名に記号を含めることはできません'
     };
+    function add2(a, b) {
+        // プリミティブ型の型ガード
+        if (typeof a === 'string' || typeof b === 'string') {
+            return a.toString() + b.toString();
+        }
+        return a + b;
+    }
+    const res = add2('Hello ', 'World!');
+    res.split(' ');
 }

@@ -45,7 +45,7 @@
   // Union型は共通部分が型になる. Object型は結合された型になる.
   type Universal = Combinable & Numeric; // number型
 
-  function add(a: Combinable, b: Combinable) {
+  function add1(a: Combinable, b: Combinable) {
     // プリミティブ型の型ガード
     if (typeof a === 'string' || typeof b === 'string') {
       return a.toString() + b.toString();
@@ -154,5 +154,23 @@
   const errorBag: ErrorContainer = {
     email: '正しいメールアドレスではありません',
     username: 'ユーザー名に記号を含めることはできません'
+  };
+
+  // -----------------------------------------------
+  // -------------- 関数オーバーロード ----------------
+  // -----------------------------------------------
+  function add2(a: number, b: number): number;
+  function add2(a: string, b: string): string;
+  function add2(a: string, b: number): string;
+  function add2(a: number, b: string): string;
+  function add2(a: Combinable, b: Combinable) {
+    // プリミティブ型の型ガード
+    if (typeof a === 'string' || typeof b === 'string') {
+      return a.toString() + b.toString();
+    }
+    return a + b;
   }
+
+  const res = add2('Hello ', 'World!');
+  res.split(' ');
 }

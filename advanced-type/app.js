@@ -64,4 +64,14 @@
         console.log('移動速度: ' + speed);
     }
     moveAnimal({ type: 'bird', flyingSpeed: 10 });
+    // 型キャスト
+    const input1 = document.getElementById('input1');
+    const input2 = document.getElementById('input2');
+    input1.value = 'こんにちは';
+    input2.value = 'こんにちは';
+    // nullでないことを保証できない時
+    const input3 = document.getElementById('input2');
+    if (input3) {
+        input3.value = 'こんにちは';
+    }
 }

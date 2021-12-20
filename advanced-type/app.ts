@@ -97,6 +97,7 @@
     }
   }
 
+  // 判別可能なunion型
   interface Bird {
     type: 'bird'; // リテラル型
     flyingSpeed: number;
@@ -122,4 +123,17 @@
   }
 
   moveAnimal({ type: 'bird', flyingSpeed: 10 });
+
+  // 型キャスト
+  const input1 = <HTMLInputElement>document.getElementById('input1');
+  const input2 = document.getElementById('input2')! as HTMLInputElement;
+
+  input1.value = 'こんにちは';
+  input2.value = 'こんにちは';
+
+  // nullでないことを保証できない時
+  const input3 = document.getElementById('input2');
+  if (input3) {
+    (input3 as HTMLInputElement).value = 'こんにちは';
+  }
 }

@@ -9,7 +9,9 @@
     startDate: Date;
   };
 
-  // 交差型
+  // -----------------------------------------------
+  // ------------------ 交差型 ----------------------
+  // -----------------------------------------------
   type ElevatedEmployee1 = Admin1 & Employee1;
 
   const e1: ElevatedEmployee1 = {
@@ -97,7 +99,9 @@
     }
   }
 
-  // 判別可能なunion型
+  // -----------------------------------------------
+  // -------------- 判別可能なunion型 ----------------
+  // -----------------------------------------------
   interface Bird {
     type: 'bird'; // リテラル型
     flyingSpeed: number;
@@ -124,7 +128,9 @@
 
   moveAnimal({ type: 'bird', flyingSpeed: 10 });
 
-  // 型キャスト
+  // -----------------------------------------------
+  // ------------------ 型キャスト -------------------
+  // -----------------------------------------------
   const input1 = <HTMLInputElement>document.getElementById('input1');
   const input2 = document.getElementById('input2')! as HTMLInputElement;
 
@@ -135,5 +141,18 @@
   const input3 = document.getElementById('input2');
   if (input3) {
     (input3 as HTMLInputElement).value = 'こんにちは';
+  }
+
+  // -----------------------------------------------
+  // ---------------- インデックス型 -----------------
+  // -----------------------------------------------
+  interface ErrorContainer {
+    // objectのプロパティの正確な名前はわからない. 幾つのプロパティがあるかもわからない
+    [prop: string]: string;
+  }
+
+  const errorBag: ErrorContainer = {
+    email: '正しいメールアドレスではありません',
+    username: 'ユーザー名に記号を含めることはできません'
   }
 }

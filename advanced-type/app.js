@@ -64,7 +64,9 @@
         console.log('移動速度: ' + speed);
     }
     moveAnimal({ type: 'bird', flyingSpeed: 10 });
-    // 型キャスト
+    // -----------------------------------------------
+    // ------------------ 型キャスト -------------------
+    // -----------------------------------------------
     const input1 = document.getElementById('input1');
     const input2 = document.getElementById('input2');
     input1.value = 'こんにちは';
@@ -74,4 +76,8 @@
     if (input3) {
         input3.value = 'こんにちは';
     }
+    const errorBag = {
+        email: '正しいメールアドレスではありません',
+        username: 'ユーザー名に記号を含めることはできません'
+    };
 }

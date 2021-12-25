@@ -173,4 +173,19 @@
 
   const res = add2('Hello ', 'World!');
   res.split(' ');
+
+  // -----------------------------------------------
+  // ------------- オプショナルチェイン ---------------
+  // -----------------------------------------------
+  const fetchedUserData = {
+    id: 'ui',
+    name: 'user1',
+    job: {
+      title: 'Developer',
+      description: 'TypeScript'
+    }
+  };
+
+  // console.log(fetchedUserData.job && fetchedUserData.job.title);
+  console.log(fetchedUserData?.job?.title);
 }

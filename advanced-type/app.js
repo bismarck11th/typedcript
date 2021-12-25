@@ -103,4 +103,12 @@ var _a;
     };
     // console.log(fetchedUserData.job && fetchedUserData.job.title);
     console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
+    // -----------------------------------------------
+    // ------------- Null合体演算子 ---------------
+    // -----------------------------------------------
+    const userInput = null;
+    // これだとuserInputが空文字列や0などの場合もDefaultになってしまう
+    const storedData1 = userInput || 'Default';
+    // null, undefinedのみ判定
+    const storedData2 = userInput !== null && userInput !== void 0 ? userInput : 'Default';
 }

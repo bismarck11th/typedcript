@@ -1,4 +1,7 @@
 {
+  // -----------------------------------------------
+  // ------------------ 交差型 ----------------------
+  // -----------------------------------------------
   type Admin1 = {
     name: string;
     privileges: string[];
@@ -8,10 +11,7 @@
     name: string;
     startDate: Date;
   };
-
-  // -----------------------------------------------
-  // ------------------ 交差型 ----------------------
-  // -----------------------------------------------
+  // Object型は結合された型になる. 共通部分ではない
   type ElevatedEmployee1 = Admin1 & Employee1;
 
   const e1: ElevatedEmployee1 = {
@@ -20,6 +20,7 @@
     startDate: new Date()
   };
 
+  // interfaceでも同等の実装が可能(extends使用)
   interface Admin2 {
     name: string;
     privileges: string[];
@@ -30,7 +31,6 @@
     startDate: Date;
   }
 
-  // interfaceでも同等の実装が可能
   interface ElevatedEmployee2 extends Admin2, Employee2 {}
 
   const e2: ElevatedEmployee1 = {
@@ -41,10 +41,12 @@
 
   type Combinable = string | number;
   type Numeric = number | boolean;
-
-  // Union型は共通部分が型になる. Object型は結合された型になる.
+  // Union型は共通部分が型になる.
   type Universal = Combinable & Numeric; // number型
 
+  // -----------------------------------------------
+  // ----------------- 型ガード ---------------------
+  // -----------------------------------------------
   function add1(a: Combinable, b: Combinable) {
     // プリミティブ型の型ガード
     if (typeof a === 'string' || typeof b === 'string') {
@@ -54,7 +56,6 @@
   }
 
   type UnknownEmployee = Employee1 | Admin1;
-
   function printEmployeeInformation(emp: UnknownEmployee) {
     console.log(emp.name);
     // object型の型ガード
